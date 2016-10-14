@@ -4,6 +4,7 @@ module Main exposing
 
 import Html exposing (..)
 import Html.App as App
+import Html.Attributes as Attr
 import List exposing (map)
 
 type alias Model =
@@ -13,12 +14,14 @@ type Msg = NoOp
 
 init : Model
 init =
-  { items = ["Learn Elm", "Have some fika", "Go home"] }
+  { items = [] }
 
 view : Model -> Html Msg
 view model =
   div []
-    [ table [] <| map viewTodoItem model.items
+    [ input [ Attr.placeholder "Type a todo item!" ] []
+    , button [] [ text "Submit!" ]
+    , table [] <| map viewTodoItem model.items
     ]
 
 viewTodoItem : String -> Html Msg

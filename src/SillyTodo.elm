@@ -8,18 +8,24 @@ import Html.Attributes as Attr
 import List exposing (map)
 
 type alias Model =
-  { items : List String }
+  { items : List String
+  , input : String
+  }
 
 type Msg = NoOp
 
 init : Model
 init =
-  { items = [] }
+  { items = []
+  , input = ""
+  }
 
 view : Model -> Html Msg
 view model =
   div []
-    [ input [ Attr.placeholder "Type a todo item!" ] []
+    [ input [ Attr.placeholder "Type a todo item!"
+            , Attr.value model.input
+            ] []
     , button [] [ text "Submit!" ]
     , table [] <| map viewTodoItem model.items
     ]
